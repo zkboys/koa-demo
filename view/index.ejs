@@ -1,0 +1,63 @@
+<div style="padding: 32px;text-align: center">
+    <button type="button" id="getUsers" class="btn btn-primary">获取用户列表</button>
+    <button type="button" id="getUserDetail" class="btn btn-warning">获取用户详情</button>
+    <button type="button" id="modifyUser" class="btn btn-success">修改用户</button>
+    <button type="button" id="addUser" class="btn btn-info">添加用户</button>
+    <button type="button" id="delUser" class="btn btn-danger">删除用户</button>
+</div>
+
+<script>
+    $(function() {
+
+        $('#getUsers').on('click', function() {
+            $.ajax({
+                method: 'get',
+                url: '/users',
+                success: (res) => {
+                    console.log(res);
+                },
+            });
+        });
+        $('#getUserDetail').on('click', function() {
+            $.ajax({
+                method: 'get',
+                url: '/users/1',
+                success: (res) => {
+                    console.log(res);
+                },
+            });
+        });
+
+        $('#modifyUser').on('click', function() {
+            $.ajax({
+                method: 'put',
+                url: '/users/1',
+                data: {id: 1, name: '张三2', age: 24},
+                success: (res) => {
+                    console.log(res);
+                },
+            });
+        });
+        $('#addUser').on('click', function() {
+            $.ajax({
+                method: 'post',
+                url: '/users',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify({id: 5, name: 'xxx', age: 26}),
+                success: (res) => {
+                    console.log(res);
+                },
+            });
+        });
+        $('#delUser').on('click', function() {
+            $.ajax({
+                method: 'delete',
+                url: '/users/1',
+                success: (res) => {
+                    console.log(res);
+                },
+            });
+        });
+    });
+</script>
